@@ -111,6 +111,9 @@ int server_sockaddr_init(const char *proto, const char* portstr, struct sockaddr
    void code(char *code) {
         for(int i = 0; code[i] != '\0'; i++) {
             if (isdigit(code[i])) {
+                if(isdigit(code[j+1])){
+                    key = atoi(&code[j]);
+                }
                 int numb = code[i] - '0'; 
                 for (int j = 0; code[j] != '\0'; j++){
                     code[j] = code[j] < 'a' || code[j] > 'z' ? code[j] : (((code[j] - 97) + numb) % 26)  + 97;
@@ -124,6 +127,9 @@ int server_sockaddr_init(const char *proto, const char* portstr, struct sockaddr
    void decode(char *code) {
         for(int i = 0; code[i] != '\0'; i++) {
             if (isdigit(code[i])) {
+                if(isdigit(code[j+1])){
+                    key = atoi(&code[j]);
+                }
                 int numb = code[i] - '0'; 
                 code[i] = '\0';
                 for (int j = 0; code[j] != '\0'; j++){
